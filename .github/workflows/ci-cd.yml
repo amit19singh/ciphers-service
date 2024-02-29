@@ -20,7 +20,7 @@ jobs:
         
         - name: Unit Testing
           run: |
-            
+            cd ciphers_project
             python manage.py test
         # - name: Build and Push image
         #   run: |
