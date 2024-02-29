@@ -22,10 +22,10 @@ jobs:
           run: |
             cd ciphers_project
             python manage.py test
-        # - name: Build and Push image
-        #   run: |
-        #     docker login --username amit19singh --password ${{secrets.ACCESS_TOKEN}} ghcr.io
-        #     docker build -t ghcr.io/amit19singh/ciphers_p:latest --file Dockerfile .  
-        #     docker push ghcr.io/amit19singh/ciphers_p:latest
+        - name: Build and Push image
+          run: |
+            docker login --username amit19singh --password ${{secrets.ACCESS_TOKEN}} ghcr.io
+            docker build -t ghcr.io/amit19singh/ciphers-service:latest --file Dockerfile .  
+            docker push ghcr.io/amit19singh/ciphers-service:latest
 
 
