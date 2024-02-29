@@ -1,0 +1,31 @@
+
+name: Run the Tests, Build the image
+on:
+  push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.11.5
+        - name: Install dependencies
+          run : |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+        
+        - name: Unit Testing
+          run: |
+            
+            python manage.py test
+        - name: Build and Push image
+          run: |
+            docker login --username amit19singh --password ${{secrets.ACCESS_TOKEN}} ghcr.io
+            docker build -t ghcr.io/amit19singh/ciphers_project:latest --file Dockerfile .  
+            docker push ghcr.io/amit19singh/ciphers_project:latest
+
+
